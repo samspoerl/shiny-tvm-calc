@@ -3,11 +3,11 @@ Time Value of Money calculator using R Shiny.
 
 ## Getting Started
 
-You will need R, RStudio, and the libraries below. To run the application locally, click "Run App" in the upper-right corner of the scripting quadrant.
+You will need [R](https://cran.r-project.org/), [RStudio](https://rstudio.com/products/rstudio/download/#download), and the libraries below. To run the application locally, click "Run App" in the upper-right corner of the scripting quadrant.
 
 ## Usage
 
-The purpose of this application is calculate the future value of an investment. This requires four inputs:
+The purpose of this application is calculate the future value of an investment. This requires four inputs.
 
 **Inputs**
 1. Present Value - the amount invested at the beginning of the time period
