@@ -29,16 +29,30 @@ ui <- fluidPage(
 
     # Sidebar with a slider input for number of bins 
     sidebarLayout(
+        
+        # Accept input in the side (left) panel
         sidebarPanel(
+            
+            # Show help text at the top of the side panel
             helpText("Calculate the future value of an 
                      investment by entering the following 
                      inputs."),
+            
+            # Present value input
             numericInput("pv", h4("Present Value"), value = 100),
+            
+            # Payment input
             numericInput("pmt", h4("Payment"), value = 0),
+            
+            # Interest rate input
             sliderInput("rate", h4("Interest Rate"),
                         min = 0, max = 12, value = 8),
+            
+            # Number of periods input
             sliderInput("nper", h4("Number of Periods"),
                         min = 0, max = 80, value = 20),
+            
+            # Show author info at bottom of side panel
             br(),
             br(),
             br(),
@@ -46,23 +60,32 @@ ui <- fluidPage(
             helpText("sam@samspoerl.com")
         ),
 
-        # Show a plot of the generated distribution
+        # Display output in the main (right) panel
         mainPanel(
+            
+            # Show value of investment at the end of the time period
            verbatimTextOutput("fv"),
+           
+           # Show graph of investment over time
            plotOutput("fv_schedule")
         )
     )
 )
 
-# Define server logic required to draw a histogram
+# Define server logic to perform TVM calculations
 server <- function(input, output) {
 
+    # Output: value of investment at the end of the time period
     output$fv <- renderText({
+        
+        # Pass inputs to fv function
         futval <- fv(r=input$rate/100, # / 100
                      n=input$nper, 
                      pv=-input$pv, # negative
                      pmt=-input$pmt, # negative
                      type = 0)
+        
+        # Concatenate with string and convert to currency format
         cur <- paste("In ", 
                      input$nper,
                      " periods you will have:\n$",
@@ -73,11 +96,16 @@ server <- function(input, output) {
                 )
     })
     
+    # Output: graph of investment over time
     output$fv_schedule <- renderPlot({
+        
+        # Pass inputs to helper function
         vals <- fv_plot(input$rate/100, 
                         input$nper, 
                         -input$pv,
                         -input$pmt)
+        
+        # Create line plot from dataframe
         plot(vals, type="b")
     })
     
