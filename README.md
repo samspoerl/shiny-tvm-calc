@@ -28,3 +28,9 @@ The plot in the main panel shows the value of the investment for each period for
 
 1. app.R - Main application script
 2. utils.R - Helper script to return future value schedule as a dataframe
+
+## Future-State Ideas
+
+1. Allow the user to select which variable they want as output (i.e., Interest Rate).
+2. Allow the user to apply a growth rate to their payment.
+3. Run a monte carlo simulation on the data given a mean and standard deviation. This would let the user explore the probability of different outcomes.
